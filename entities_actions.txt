@@ -14,24 +14,9 @@ actions on user{
     delete: delete themselves
 }
 
-admin{
-    id: auto
-    name: required
-    mail: required, no duplicate
-}
-
-actions on admin{
-    get: retrieve users by name, retrieve specific user by id, retrieve users by attendance, retrieve all administrators by name
-    post: add new user
-    put:
-    patch: update an existing user
-    delete: delete a user
-}
-
 event{
     id: auto
     name: required
-    genre: from entity genre
     start_date: required
     duration: optional, default 1 day
     street_name: required
@@ -49,21 +34,4 @@ actions on event{
     put:
     patch: update an existing event
     delete: delete an event
-}
-
-genre {
-    hiphop,
-    jazz,
-    R&B,
-    hardstyle,
-    electro,
-    dance,
-    rap,
-    funk,
-    80's,
-    Abba
-}
-
-actions on genre{
-    get: retrieve specific genre 
 }
