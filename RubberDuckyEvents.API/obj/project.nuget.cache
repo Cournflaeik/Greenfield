@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g2TrzOtj5SL+8d5dztcRs3GY7WnfI+jF+LrAhqElaubnFGUj2mZ4Kseg+MYVcqQDDLfoRueeSDoNTPCKm81acQ==",
+  "dgSpecHash": "kfnEuX10+zN72U+oNWZePQpvbqXujWttRnt36zmIbqwHOCia0TIP69hvo46JcgAfznq/JQ+ypMZPGb4GYJdbkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baile\\Desktop\\RubberDuckyEvents.API\\IMDArchitecture.API.csproj",
+  "projectFilePath": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\baile\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\baile\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

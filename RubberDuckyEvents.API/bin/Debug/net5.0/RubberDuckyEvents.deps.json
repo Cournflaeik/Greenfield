@@ -23,7 +23,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "IMDArchitecture.API/1.0.0": {
+      "RubberDuckyEvents/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "5.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.10",
@@ -311,10 +311,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "IMDArchitecture.API.dll": {}
+          "RubberDuckyEvents.dll": {}
         },
         "compile": {
-          "IMDArchitecture.API.dll": {}
+          "RubberDuckyEvents.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -2376,7 +2376,7 @@
     }
   },
   "libraries": {
-    "IMDArchitecture.API/1.0.0": {
+    "RubberDuckyEvents/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

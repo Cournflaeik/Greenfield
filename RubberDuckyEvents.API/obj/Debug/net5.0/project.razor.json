@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\IMDArchitecture.API.csproj",
+  "FilePath": "c:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.API.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15616,7 +15616,7 @@
     ],
     "CSharpLanguageVersion": 900
   },
-  "RootNamespace": "IMDArchitecture.API",
+  "RootNamespace": "RubberDuckyEvents.API",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

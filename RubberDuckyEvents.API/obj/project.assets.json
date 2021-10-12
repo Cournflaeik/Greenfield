@@ -1260,11 +1260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\baile\\Desktop\\RubberDuckyEvents.API\\IMDArchitecture.API.csproj",
-      "projectName": "IMDArchitecture.API",
-      "projectPath": "C:\\Users\\baile\\Desktop\\RubberDuckyEvents.API\\IMDArchitecture.API.csproj",
+      "projectUniqueName": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
+      "projectName": "RubberDuckyEvents",
+      "projectPath": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
       "packagesPath": "C:\\Users\\baile\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\baile\\Desktop\\RubberDuckyEvents.API\\obj\\",
+      "outputPath": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\baile\\AppData\\Roaming\\NuGet\\NuGet.Config"
