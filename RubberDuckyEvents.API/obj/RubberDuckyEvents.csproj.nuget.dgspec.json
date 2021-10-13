@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj": {}
+    "/Users/liampeeters/Desktop/API/RubberDuckyEvents.API/RubberDuckyEvents.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj": {
+    "/Users/liampeeters/Desktop/API/RubberDuckyEvents.API/RubberDuckyEvents.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
+        "projectUniqueName": "/Users/liampeeters/Desktop/API/RubberDuckyEvents.API/RubberDuckyEvents.csproj",
         "projectName": "RubberDuckyEvents",
-        "projectPath": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
-        "packagesPath": "C:\\Users\\baile\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baile\\Desktop\\School\\Architectuur\\badeend_api\\RubberDuckyEvents.API\\obj\\",
+        "projectPath": "/Users/liampeeters/Desktop/API/RubberDuckyEvents.API/RubberDuckyEvents.csproj",
+        "packagesPath": "/Users/liampeeters/.nuget/packages/",
+        "outputPath": "/Users/liampeeters/Desktop/API/RubberDuckyEvents.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\baile\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/liampeeters/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
         }
       }
     }
