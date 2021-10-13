@@ -23,10 +23,7 @@ event{
     street_number: required
     city: required
     country: required
-    participants_count: default from users who are attending this event 
-    age_range: optional
-    main_event_id: optional
-}
+    }
 
 actions on event{
     get: retrieve events by name, retrieve events by start_date, retrieve events by city, retrieve specific event by id
