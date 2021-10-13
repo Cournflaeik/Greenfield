@@ -9,5 +9,6 @@ namespace RubberDuckyEvents.API
         public int TemperatureC { get; set; }
 
         public string Summary { get; set; }
+
     }
 }
