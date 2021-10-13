@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = RubberDuckyEvents
-build_property.ProjectDir = /Users/liampeeters/Desktop/API/RubberDuckyEvents.API/
+build_property.ProjectDir = C:\Users\svand\OneDrive\Bureaublad\2021-2022\architecture\greenfield\RubberDuckyEvents.API\
