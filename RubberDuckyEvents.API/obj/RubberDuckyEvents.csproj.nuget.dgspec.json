@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\svand\\OneDrive\\Bureaublad\\2021-2022\\architecture\\greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj": {}
+    "C:\\Users\\baile\\Desktop\\Greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj": {}
   },
   "projects": {
-    "C:\\Users\\svand\\OneDrive\\Bureaublad\\2021-2022\\architecture\\greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj": {
+    "C:\\Users\\baile\\Desktop\\Greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\svand\\OneDrive\\Bureaublad\\2021-2022\\architecture\\greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
+        "projectUniqueName": "C:\\Users\\baile\\Desktop\\Greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
         "projectName": "RubberDuckyEvents",
-        "projectPath": "C:\\Users\\svand\\OneDrive\\Bureaublad\\2021-2022\\architecture\\greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
-        "packagesPath": "C:\\Users\\svand\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\svand\\OneDrive\\Bureaublad\\2021-2022\\architecture\\greenfield\\RubberDuckyEvents.API\\obj\\",
+        "projectPath": "C:\\Users\\baile\\Desktop\\Greenfield\\RubberDuckyEvents.API\\RubberDuckyEvents.csproj",
+        "packagesPath": "C:\\Users\\baile\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\baile\\Desktop\\Greenfield\\RubberDuckyEvents.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\svand\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\baile\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

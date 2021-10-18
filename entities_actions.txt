@@ -7,10 +7,10 @@ user{
 }
 
 actions on user{
-    get: retrieve users by name, retrieve users by attendance, 
+    get: retrieve users by name, retrieve users by id
     post: add new user
-    put:
-    patch: update themselves
+    put: update themselves
+    patch:
     delete: delete themselves
 }
 
@@ -18,6 +18,7 @@ event{
     id: auto
     name: required
     start_date: required
+    age_range: required
     duration: optional, default 1 day
     street_name: required
     street_number: required
@@ -26,9 +27,9 @@ event{
     }
 
 actions on event{
-    get: retrieve events by name, retrieve events by start_date, retrieve events by city, retrieve specific event by id
+    get: retrieve events by name, retrieve events by age range
     post: add a new event
-    put:
-    patch: update an existing event
+    put: update an existing event
+    patch:
     delete: delete an event
 }
