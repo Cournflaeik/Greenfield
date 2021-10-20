@@ -35,8 +35,8 @@ namespace RubberDuckyEvents.API.Controllers
 
         //Get request for user based on ID
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
+        [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
         public async Task<IActionResult> GetById(string id)
         {
             try
@@ -44,7 +44,7 @@ namespace RubberDuckyEvents.API.Controllers
                 var user = await _database.GetUserById(int.Parse(id));
                 if (user != null)
                 {
-                    return Ok(ViewUser.FromModel(user));
+                    return Ok(ViewUser.FromModel(user)); //is niet gelijk ViewUser is hetgeen dat je wilt dat er gezien kan worden (bv. zonder passwoord, enkel mail en naam)
                 }
                 else
                 {
