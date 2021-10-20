@@ -87,15 +87,14 @@ namespace RubberDuckyEvents.API.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteById(string id)
+        public async Task<IActionResult> DeleteById(int id)
         {
             try
             {
-                var parsedId = int.Parse(id);
-                var user = await _database.GetUserById(parsedId);
+                var user = await _database.GetUserById(id);
                 if (user != null)
                 {
-                    await _database.DeleteUser(parsedId);
+                    await _database.DeleteUser(id);
                     return NoContent();
                 }
                 else
@@ -114,11 +113,11 @@ namespace RubberDuckyEvents.API.Controllers
         [HttpPut()]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PersistUser(User user)
+        public async Task<IActionResult> PersistUser(CreateUser user)
         {
             try
             {
-                var createdUser = user;
+                var createdUser = user.ToUser();
                 var persistedUser= await _database.PersistUser(createdUser);
                 return CreatedAtAction(nameof(GetById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
             }
