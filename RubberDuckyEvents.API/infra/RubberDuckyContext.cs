@@ -5,13 +5,14 @@ using RubberDuckyEvents.API.Domain;
 
 namespace RubberDuckyEvents.API.Infra
 {
-    public class userContext : DbContext
+    public class RubberDuckyContext : DbContext
     {
-        public userContext(DbContextOptions<userContext> ctx) : base(ctx)
+        public RubberDuckyContext(DbContextOptions<RubberDuckyContext> ctx) : base(ctx)
         {
 
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }

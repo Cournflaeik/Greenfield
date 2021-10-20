@@ -10,9 +10,9 @@ namespace RubberDuckyEvents.API.Infra
 {
     public class SqliteDatabase : IDatabase
     {
-        private userContext _context;
+        private RubberDuckyContext _context;
 
-        public SqliteDatabase(userContext context)
+        public SqliteDatabase(RubberDuckyContext context)
         {
             _context = context;
         }
