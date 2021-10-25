@@ -8,6 +8,10 @@ namespace RubberDuckyEvents.API
         
         public string Name { get; set; }
 
+        public DateTime MinAge {get; set; }
+
+        public DateTime MaxAge { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }

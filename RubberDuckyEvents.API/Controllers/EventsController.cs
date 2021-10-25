@@ -35,5 +35,7 @@ namespace RubberDuckyEvents.API.Controllers
             })
             .ToArray();
         }
+
+        
     }
 }
