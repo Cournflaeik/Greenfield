@@ -1,4 +1,1 @@
-remove user attendance action *
-enroll user in event action *
-
 How to set fields required
