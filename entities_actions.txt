@@ -3,7 +3,7 @@ user{
     name: required
     date_of_birth: required
     mail: required, no duplicate
-    attendance:  //Used to get the amount of people at an event
+    attendance: //Used to get the amount of people at an event
 }
 
 actions on user{

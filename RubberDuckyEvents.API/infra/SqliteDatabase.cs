@@ -54,6 +54,34 @@ namespace RubberDuckyEvents.API.Infra
             return user;
         }
 
+        public async Task<User> DeleteUserAttendance(User user)
+        {
+            if (user.Id == 0)
+            {
+                await _context.Users.AddAsync(user);
+            }
+            else
+            {
+                _context.Users.Update(user);
+            }
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<User> AddUserAttendance(User user, string eventName)
+        {
+            if (user.Id == 0)
+            {
+                await _context.Users.AddAsync(user);
+            }
+            else
+            {
+                _context.Users.Update(user);
+            }
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
         //Event 
         public async Task DeleteEvent(string name)
         {
@@ -95,6 +123,5 @@ namespace RubberDuckyEvents.API.Infra
             await _context.SaveChangesAsync();
             return event_;
         }
-
     }
 }

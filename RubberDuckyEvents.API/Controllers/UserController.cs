@@ -109,11 +109,49 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //Put request for user
+        //Put request for user changes
         [HttpPut()]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PersistUser(CreateUser user)
+        {
+            try
+            {
+                var createdUser = user.ToUser();
+                var persistedUser= await _database.PersistUser(createdUser);
+                return CreatedAtAction(nameof(GetById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Got an error for {nameof(PersistUser)}");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //Put request for user attendance removal
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteUserAttendance(CreateUser user)
+        {
+            try
+            {
+                var createdUser = user.ToUser();
+                var persistedUser= await _database.PersistUser(createdUser);
+                return CreatedAtAction(nameof(GetById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Got an error for {nameof(PersistUser)}");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //Put request for adding user attendance
+        [HttpPut("{id}/{eventName}")]
+        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddUserAttendance(CreateUser user)
         {
             try
             {
