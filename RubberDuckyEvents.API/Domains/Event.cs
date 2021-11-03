@@ -1,9 +1,12 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
-namespace RubberDuckyEvents.API
+namespace RubberDuckyEvents.API.Domain
 {
     public class Event
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } // or Guid? (more possibilities) but int is enough
         
         public string Name { get; set; }
@@ -23,6 +26,5 @@ namespace RubberDuckyEvents.API
         public string City { get; set; }
 
         public string Country { get; set; }
-
     }
 }

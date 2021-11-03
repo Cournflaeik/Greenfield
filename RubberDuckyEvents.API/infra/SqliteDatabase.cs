@@ -16,6 +16,7 @@ namespace RubberDuckyEvents.API.Infra
         {
             _context = context;
         }
+
         public async Task DeleteUser(int parsedId)
         {
             var user = await _context.Users.FindAsync(parsedId);
@@ -52,5 +53,48 @@ namespace RubberDuckyEvents.API.Infra
             await _context.SaveChangesAsync();
             return user;
         }
+
+        //Event 
+        public async Task DeleteEvent(string name)
+        {
+            var event_ = await _context.Events.FindAsync(name);
+            _context.Events.Remove(event_);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<ReadOnlyCollection<Event>> GetAllEvents(string nameStartsWith)
+        {
+            var events = await _context.Events.Where(x => EF.Functions.Like(x.Name, $"{nameStartsWith}%")).ToArrayAsync();
+            return Array.AsReadOnly(events);
+        }
+
+        public async Task<Event> GetEventById(int parsedId)
+        {
+            return await _context.Events.FindAsync(parsedId);
+        }
+
+        public async Task<Event> GetEventByName(string name)
+        {
+            return await _context.Events.FindAsync(name);
+        }
+
+        public async Task<Event> GetEventsByAgeRange(DateTime minAge, DateTime maxAge)
+        {
+            return await _context.Events.FindAsync(minAge, maxAge);
+        }
+        public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj
+        {
+            if (event_.Id == 0)
+            {
+                await _context.Events.AddAsync(event_);
+            }
+            else
+            {
+                _context.Events.Update(event_);
+            }
+            await _context.SaveChangesAsync();
+            return event_;
+        }
+
     }
 }

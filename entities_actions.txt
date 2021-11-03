@@ -3,20 +3,21 @@ user{
     name: required
     date_of_birth: required
     mail: required, no duplicate
-    attendance: optional
+    attendance:  //Used to get the amount of people at an event
 }
 
 actions on user{
     get: retrieve users by name, retrieve users by id
-    post: add new user
-    put: update themselves
+    post:
+    put: update themselves, add attendance      /*not in IDatabase*/
     patch:
-    delete: delete themselves
+    delete: delete themselves, remove attendance
 }
 
 event{
     id: auto
     name: required
+    description: required
     start_date: required
     age_range: required
     duration: optional, default 1 day
@@ -24,12 +25,13 @@ event{
     street_number: required
     city: required
     country: required
+    amount_of_people: //Not needed, front end can count the amount of people that attend a certain event
     }
 
 actions on event{
     get: retrieve events by name, retrieve events by age range
-    post: add a new event
-    put: update an existing event
+    post: 
+    put: update an existing event   /*not in IDatabase*/
     patch:
     delete: delete an event
 }
