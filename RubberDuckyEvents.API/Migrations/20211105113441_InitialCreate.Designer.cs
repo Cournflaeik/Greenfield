@@ -9,14 +9,14 @@ using RubberDuckyEvents.API.Infra;
 namespace RubberDuckyEvents.Migrations
 {
     [DbContext(typeof(RubberDuckyContext))]
-    [Migration("20211105092739_init")]
-    partial class init
+    [Migration("20211105113441_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.11");
+                .HasAnnotation("ProductVersion", "5.0.10");
 
             modelBuilder.Entity("RubberDuckyEvents.API.Domain.Event", b =>
                 {
@@ -36,11 +36,11 @@ namespace RubberDuckyEvents.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("MaxAge")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("MaxAge")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("MinAge")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("MinAge")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -65,11 +65,11 @@ namespace RubberDuckyEvents.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AttendanceId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Mail")
                         .HasColumnType("TEXT");
@@ -79,18 +79,7 @@ namespace RubberDuckyEvents.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttendanceId");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("RubberDuckyEvents.API.Domain.User", b =>
-                {
-                    b.HasOne("RubberDuckyEvents.API.Domain.Event", "Attendance")
-                        .WithMany()
-                        .HasForeignKey("AttendanceId");
-
-                    b.Navigation("Attendance");
                 });
 #pragma warning restore 612, 618
         }

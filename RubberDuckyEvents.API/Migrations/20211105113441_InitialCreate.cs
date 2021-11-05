@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RubberDuckyEvents.Migrations
 {
-    public partial class init : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,8 +15,8 @@ namespace RubberDuckyEvents.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    MinAge = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    MaxAge = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    MinAge = table.Column<int>(type: "INTEGER", nullable: false),
+                    MaxAge = table.Column<int>(type: "INTEGER", nullable: false),
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     StreetName = table.Column<string>(type: "TEXT", nullable: true),
@@ -38,32 +38,21 @@ namespace RubberDuckyEvents.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Mail = table.Column<string>(type: "TEXT", nullable: true),
-                    AttendanceId = table.Column<int>(type: "INTEGER", nullable: true)
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Events_AttendanceId",
-                        column: x => x.AttendanceId,
-                        principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_AttendanceId",
-                table: "Users",
-                column: "AttendanceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Users");
         }
     }
 }

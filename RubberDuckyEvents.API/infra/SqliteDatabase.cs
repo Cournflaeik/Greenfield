@@ -36,6 +36,10 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Users.FindAsync(parsedId);
         }
 
+        public async Task<User> GetUserByName(string name)
+        {
+            return await _context.Users.FindAsync(name);
+        }
         public async Task<User> PersistUser(User user)
         {
             if (user.Id == 0)
@@ -97,11 +101,10 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Events.FindAsync(parsedId);
         }
 
-        public async Task<Event> GetEventsByAgeRange(DateTime minAge, DateTime maxAge)
+        public async Task<Event> GetEventsByAgeRange(int age)
         {
-            return await _context.Events.FindAsync(minAge, maxAge);
+            return await _context.Events.FindAsync(age);
         }
-
         public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj
         {
             if (event_.Id == 0)

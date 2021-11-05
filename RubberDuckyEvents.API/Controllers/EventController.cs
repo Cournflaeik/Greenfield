@@ -24,11 +24,20 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
+        //works
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Get(string titleStartsWith) =>
+            Ok((await _database.GetAllEvents(titleStartsWith))
+                .Select(ViewEvent.FromModel).ToList());
+
+        //works
         //Get request for event based on id
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetEventById(int id)
         {
             try
             {
@@ -44,20 +53,20 @@ namespace RubberDuckyEvents.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(GetById)}");
+                _logger.LogError(ex, $"Got an error for {nameof(GetEventById)}");
                 return BadRequest(ex.Message);
             }
         }
 
-        //Get request for event based on name
-        [HttpGet("{MinimumAge}/{MaximumAge}")]
+        //Get request for event based on ageRange
+        [HttpGet("getByAge/{age}")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByAgeRange(DateTime minAge, DateTime maxAge)
+        public async Task<IActionResult> GetEventsByAgeRange(int age)
         {
             try
             {
-                var event_ = await _database.GetEventsByAgeRange(minAge, maxAge);
+                var event_ = await _database.GetEventsByAgeRange(age);
                 if (event_ != null)
                 {
                     return Ok(ViewEvent.FromModel(event_));
@@ -69,11 +78,12 @@ namespace RubberDuckyEvents.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(GetById)}");
+                _logger.LogError(ex, $"Got an error for {nameof(GetEventsByAgeRange)}");
                 return BadRequest(ex.Message);
             }
         }
 
+        //Works
         //Delete request for event based on id
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -100,6 +110,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
+        //works
         //Put request for event
         [HttpPut()]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status201Created)]
@@ -110,7 +121,7 @@ namespace RubberDuckyEvents.API.Controllers
             {
                 var createdEvent = event_.ToEvent();
                 var persistedEvent = await _database.PersistEvent(createdEvent);
-                return CreatedAtAction(nameof(GetById), new { id = createdEvent.Id.ToString() }, ViewEvent.FromModel(persistedEvent));
+                return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.Id.ToString() }, ViewEvent.FromModel(persistedEvent));
             }
             catch (Exception ex)
             {

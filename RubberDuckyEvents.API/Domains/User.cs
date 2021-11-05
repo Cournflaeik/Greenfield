@@ -11,6 +11,6 @@ namespace RubberDuckyEvents.API.Domain
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Mail { get; set; }
-        public Event Attendance { get; set; } //Only one event per person
+        public int EventId { get; set; } //Only one event per person
     }
 }

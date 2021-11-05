@@ -10,8 +10,8 @@ namespace RubberDuckyEvents.API.Controllers
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Mail { get; set; }
-        public Event Attendance { get; set; }
-        public User ToUser() => new User { Name = this.Name, DateOfBirth = this.DateOfBirth, Mail = this.Mail, Attendance = this.Attendance,  Id = this.Id };
+        public int EventId { get; set; }
+        public User ToUser() => new User { Name = this.Name, DateOfBirth = this.DateOfBirth, Mail = this.Mail, EventId = this.EventId,  Id = this.Id };
     }
 
     public class ViewUser
@@ -20,7 +20,7 @@ namespace RubberDuckyEvents.API.Controllers
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Mail { get; set; }
-        public Event Attendance { get; set; }
+        public int EventId { get; set; }
 
         public static ViewUser FromModel(User user) => new ViewUser
         {
@@ -28,7 +28,7 @@ namespace RubberDuckyEvents.API.Controllers
             Name = user.Name,
             DateOfBirth = user.DateOfBirth,
             Mail = user.Mail,
-            Attendance = user.Attendance,
+            EventId = user.EventId,
         };
     }
 }
