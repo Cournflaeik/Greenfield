@@ -27,6 +27,7 @@ namespace RubberDuckyEvents.API.Controllers
         //Get request for event based on start of name
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
+        // REMARK a get without content? Empty collection does not mean "empty response"
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Get(string nameStartsWith) =>
             Ok((await _database.GetAllEvents(nameStartsWith))
@@ -40,6 +41,8 @@ namespace RubberDuckyEvents.API.Controllers
         {
             try
             {
+                // REMARK nothing in your domain model/database definition defines that name is unique. I.E. you can get more than one result
+                // with the same name. I _think_ this might be better a 'get by id'.
                 var event_ = await _database.GetEventByName(name);
                 if (event_ != null)
                 {
@@ -90,6 +93,7 @@ namespace RubberDuckyEvents.API.Controllers
         {
             try
             {
+                // REMARK again, name is not unique in your model.
                 var event_ = await _database.GetEventByName(name);
                 if (event_ != null)
                 {

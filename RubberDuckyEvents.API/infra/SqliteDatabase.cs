@@ -68,6 +68,7 @@ namespace RubberDuckyEvents.API.Infra
             return user;
         }
 
+        // REMARK be carefull with adding methods that don't actually do what the method name implies they do
         public async Task<User> AddUserAttendance(User user, string eventName)
         {
             if (user.Id == 0)
