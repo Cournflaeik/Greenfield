@@ -106,22 +106,29 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //No worky yet
+        //Works
         //Put request for user attendance removal
         [HttpPut("removeAttendance/{id}")]
-        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteUserAttendance(CreateUser user)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteUserAttendance(int id)
         {
             try
             {
-                var createdUser = user.ToUser();
-                var persistedUser= await _database.PersistUser(createdUser);
-                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+                var user = await _database.GetUserById(id);
+                if (user != null)
+                {
+                    await _database.DeleteUserAttendance(id);
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(PersistUser)}");
+                _logger.LogError(ex, $"Got an error for {nameof(DeleteById)}");
                 return BadRequest(ex.Message);
             }
         }
