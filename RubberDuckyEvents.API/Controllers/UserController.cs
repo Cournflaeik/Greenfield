@@ -26,7 +26,7 @@ namespace RubberDuckyEvents.API.Controllers
         }
 
         //works
-        [HttpGet]
+        [HttpGet("getAllUsers")]
         [ProducesResponseType(typeof(IEnumerable<ViewUser>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Get(string titleStartsWith) =>
@@ -35,7 +35,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //works
         //Get request for user based on ID
-        [HttpGet("{id}")]
+        [HttpGet("getUserById/{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
         public async Task<IActionResult> GetUserById(int id)
@@ -61,7 +61,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //works
         //Delete request for user based on ID
-        [HttpDelete("{id}")]
+        [HttpDelete("removeUserById/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteById(int id)
@@ -88,7 +88,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //works
         //Put request for user changes
-        [HttpPut()]
+        [HttpPut("addEditUser/")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PersistUser(CreateUser user)
@@ -108,7 +108,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //No worky yet
         //Put request for user attendance removal
-        [HttpPut("{id}")]
+        [HttpPut("removeAttendance/{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteUserAttendance(CreateUser user)
@@ -128,7 +128,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //No worky yet
         //Put request for adding user attendance
-        [HttpPut("{id}/{eventName}")]
+        [HttpPut("addAttendance/{id}/{eventId}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddUserAttendance(CreateUser user)

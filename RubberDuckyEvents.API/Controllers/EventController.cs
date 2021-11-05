@@ -25,7 +25,7 @@ namespace RubberDuckyEvents.API.Controllers
         }
 
         //works
-        [HttpGet]
+        [HttpGet("getAllEvents")]
         [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Get(string titleStartsWith) =>
@@ -34,7 +34,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //works
         //Get request for event based on id
-        [HttpGet("{id}")]
+        [HttpGet("getEventById/{id}")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
         public async Task<IActionResult> GetEventById(int id)
@@ -60,7 +60,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //Works
         //Get request for event based on ageRange
-        [HttpGet("getByAge/{age}")]
+        [HttpGet("getEventsByAgeRange/{age}")]
         [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Get(int age) =>
@@ -69,7 +69,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //Works
         //Delete request for event based on id
-        [HttpDelete("{id}")]
+        [HttpDelete("removeEventById/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteById(int id)
@@ -96,7 +96,7 @@ namespace RubberDuckyEvents.API.Controllers
 
         //works
         //Put request for event
-        [HttpPut()]
+        [HttpPut("addEditEvent")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PersistEvent(CreateEvent event_)
