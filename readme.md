@@ -31,7 +31,7 @@ A nice API where you can do the following things.
 ## How to test the API
 1. If you already cloned the code go to step 2 otherwise clone the code </br>
 `git clone https://github.com/Cournflaeik/Greenfield.git`
-2. In the root directory run 
+2. In the root directory run </br>
 `dotnet test`
 3. See the tests go green 😎
 
