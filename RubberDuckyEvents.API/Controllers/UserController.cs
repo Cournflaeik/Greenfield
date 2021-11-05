@@ -25,6 +25,7 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
+        //works
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ViewUser>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -105,6 +106,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
+        //No worky yet
         //Put request for user attendance removal
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
@@ -124,6 +126,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
+        //No worky yet
         //Put request for adding user attendance
         [HttpPut("{id}/{eventName}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
