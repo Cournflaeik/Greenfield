@@ -25,6 +25,13 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<ViewUser>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Get(string titleStartsWith) =>
+            Ok((await _database.GetAllUsers(titleStartsWith))
+                .Select(ViewUser.FromModel).ToList());
+
         //Get request for user based on ID
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)

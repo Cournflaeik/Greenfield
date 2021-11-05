@@ -7,14 +7,14 @@ namespace RubberDuckyEvents.API.Ports
 {
     public interface IDatabase
     {
-        Task<ReadOnlyCollection<User>> GetAllUsers(string nameStartsWith);
+        Task<ReadOnlyCollection<User>> GetAllUsers(string users);
         Task<User> GetUserById(int id);
         Task<User> PersistUser(User user);
         Task<User> DeleteUserAttendance(User user);
         Task<User> AddUserAttendance(User user, string eventName);
         Task DeleteUser(int parsedId);
 
-        Task<ReadOnlyCollection<Event>> GetAllEvents(string nameStartsWith);
+        Task<ReadOnlyCollection<Event>> GetAllEvents(string events);
         Task<Event> GetEventById(int id);
         Task<Event> GetEventsByAgeRange(DateTime minAge, DateTime maxAge);
         Task<Event> PersistEvent(Event event_);
