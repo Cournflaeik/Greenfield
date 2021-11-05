@@ -1,7 +1,7 @@
 # RubberDuckyEvents sick API
 A nice API where you can do the following things.
 
-## Users
+### Users
 - add users
 - delete users by id
 - edit users
@@ -10,7 +10,7 @@ A nice API where you can do the following things.
 - set user attendance
 - remove user attendance
 
-## Events
+### Events
 - add events
 - delete events
 - edit events
@@ -18,7 +18,7 @@ A nice API where you can do the following things.
 - get events by age range
 - get events by id
 
-# How to use
+## How to use the API
 1. Clone the code</br>
 `git clone https://github.com/Cournflaeik/Greenfield.git`
 2. Open the folder "RubberDuckyEvents.API" </br>
@@ -27,3 +27,15 @@ A nice API where you can do the following things.
 `dotnet ef database update`
 4. Run the damn thing</br>
 `dotnet watch run`
+
+## How to test the API
+1. If you already cloned the code go to step 2 otherwise clone the code </br>
+`git clone https://github.com/Cournflaeik/Greenfield.git`
+2. In the root directory run 
+`dotnet test`
+3. See the tests go green 😎
+
+## TODO:
+1. Provide extra tests (time constraint)
+2. Provide meaningfull responses 
+3. Check the code for consistancy
