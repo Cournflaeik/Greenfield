@@ -61,5 +61,53 @@ namespace RubberDuckyEvents.Test.UnitTests
             _mockedDatabase.VerifyAll();
         }
 
+        [Fact]
+        public async Task TestGetEventById_DoesntExist()
+        {
+            var rnd = new Random();
+            var testId = rnd.Next(101);
+
+            //Create mock up event
+            var testEvent = new Event { Id = testId, Name = "EpicBigFestival", 
+            Description = "Festival is big epic", MinAge = 2, MaxAge = 5, 
+            StartDate = Convert.ToDateTime("2018-11-05 11:38:56.307"), EndDate = Convert.ToDateTime("2019-11-05 11:38:56.307"), 
+            StreetName = "Bruul", StreetNumber = 2, City = "London", Country = "England"};
+
+            _mockedDatabase.Setup(x => x.GetEventById(testId)).Returns(Task.FromResult(null as Event)); //Doesn't return the found event but returns null
+
+            //Link the EventController
+            var controller = new EventController(_mockedLogger.Object, _mockedDatabase.Object);
+
+            //Check the results
+            var result = await new EventController(_mockedLogger.Object, _mockedDatabase.Object).GetEventById(testId);
+            Assert.IsType<NotFoundResult>(result);
+
+            _mockedLogger.VerifyAll();
+            _mockedDatabase.VerifyAll();
+        }
+
+        [Fact]
+        public async Task TestGetEventById_ErrorOnRetrievalAsync()
+        {
+            var rnd = new Random();
+            var testId = rnd.Next(101);
+
+            //Create mock up event
+            var testEvent = new Event { Id = testId, Name = "EpicBigFestival", 
+            Description = "Festival is big epic", MinAge = 2, MaxAge = 5, 
+            StartDate = Convert.ToDateTime("2018-11-05 11:38:56.307"), EndDate = Convert.ToDateTime("2019-11-05 11:38:56.307"), 
+            StreetName = "Bruul", StreetNumber = 2, City = "London", Country = "England"};
+
+            _mockedDatabase.Setup(x => x.GetEventById(testId)).ThrowsAsync(new Exception("Cowboy Bebop"));
+
+            //Link the EventController
+            var result = await new EventController(_mockedLogger.Object, _mockedDatabase.Object).GetEventById(testId);
+
+            //Check the results
+            Assert.IsType<BadRequestObjectResult>(result);
+            _mockedLogger.VerifyAll();
+            _mockedDatabase.VerifyAll();
+        }
+
     }
 }
