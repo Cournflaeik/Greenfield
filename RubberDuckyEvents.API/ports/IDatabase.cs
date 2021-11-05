@@ -11,7 +11,7 @@ namespace RubberDuckyEvents.API.Ports
         Task<User> GetUserById(int id);
         Task<User> PersistUser(User user);
         Task DeleteUserAttendance(int id);
-        Task<User> AddUserAttendance(User user, string eventName);
+        Task AddUserAttendance(int id, int eventId);
         Task DeleteUser(int parsedId);
 
         Task<ReadOnlyCollection<Event>> GetAllEvents(string events);

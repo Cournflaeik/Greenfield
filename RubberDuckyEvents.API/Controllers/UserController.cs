@@ -138,17 +138,24 @@ namespace RubberDuckyEvents.API.Controllers
         [HttpPut("addAttendance/{id}/{eventId}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddUserAttendance(CreateUser user)
+        public async Task<IActionResult> AddUserAttendance(int id, int eventId)
         {
             try
             {
-                var createdUser = user.ToUser();
-                var persistedUser= await _database.PersistUser(createdUser);
-                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+                var user = await _database.GetUserById(id);
+                if (user != null)
+                {
+                    await _database.AddUserAttendance(id, eventId);
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(PersistUser)}");
+                _logger.LogError(ex, $"Got an error for {nameof(AddUserAttendance)}");
                 return BadRequest(ex.Message);
             }
         }

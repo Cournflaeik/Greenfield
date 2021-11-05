@@ -62,18 +62,12 @@ namespace RubberDuckyEvents.API.Infra
             await _context.SaveChangesAsync();                          //Save the changes
         }
 
-        public async Task<User> AddUserAttendance(User user, string eventName)
+        public async Task AddUserAttendance(int id, int eventId)
         {
-            if (user.Id == 0)
-            {
-                await _context.Users.AddAsync(user);
-            }
-            else
-            {
-                _context.Users.Update(user);
-            }
+            var user = await _context.Users.FindAsync(id);
+            user.EventId = eventId;
+            _context.Entry(user).Property("EventId").IsModified = true;
             await _context.SaveChangesAsync();
-            return user;
         }
 
         //Event 
