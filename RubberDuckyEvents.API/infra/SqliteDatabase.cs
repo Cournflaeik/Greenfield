@@ -77,22 +77,19 @@ namespace RubberDuckyEvents.API.Infra
             _context.Events.Remove(event_);
             await _context.SaveChangesAsync();
         }
-
         public async Task<ReadOnlyCollection<Event>> GetAllEvents(string nameStartsWith)
         {
             var events = await _context.Events.Where(x => EF.Functions.Like(x.Name, $"{nameStartsWith}%")).ToArrayAsync();
             return Array.AsReadOnly(events);
         }
-
         public async Task<Event> GetEventById(int parsedId)
         {
             return await _context.Events.FindAsync(parsedId);
         }
-
-        public async Task<ReadOnlyCollection<Event>> GetEventsByAgeRange(int age)
+        public async Task<Event[]> GetEventsByAgeRange(int age)
         {
             var events = await _context.Events.Where(x => x.MinAge <= age && age <= x.MaxAge).ToArrayAsync();
-            return Array.AsReadOnly(events);
+            return events;
         }
         public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj
         {
