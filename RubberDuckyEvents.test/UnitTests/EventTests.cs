@@ -44,6 +44,18 @@ namespace RubberDuckyEvents.Test.UnitTests
 
             //Check results
             Assert.Equal(200, actualResult.StatusCode);
+            var viewModel = actualResult.Value as ViewEvent;
+            Assert.Equal(testEvent.Id, viewModel.Id);
+            Assert.Equal(testEvent.Name, viewModel.Name);
+            Assert.Equal(testEvent.Description, viewModel.Description);
+            Assert.Equal(testEvent.MinAge, viewModel.MinAge);
+            Assert.Equal(testEvent.MaxAge, viewModel.MaxAge);
+            Assert.Equal(testEvent.StartDate, viewModel.StartDate);
+            Assert.Equal(testEvent.EndDate, viewModel.EndDate);
+            Assert.Equal(testEvent.StreetName, viewModel.StreetName);
+            Assert.Equal(testEvent.StreetNumber, viewModel.StreetNumber);
+            Assert.Equal(testEvent.City, viewModel.City);
+            Assert.Equal(testEvent.Country, viewModel.Country);
 
             _mockedLogger.VerifyAll();
             _mockedDatabase.VerifyAll();
