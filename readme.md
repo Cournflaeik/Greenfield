@@ -36,6 +36,6 @@ A nice API where you can do the following things.
 3. See the tests go green 😎
 
 ## TODO:
-1. Provide extra tests (time constraint)
-2. Provide meaningfull responses (time constraint)
-3. Check the code for consistancy (time constraint)
+1. Provide extra tests (time constraint ⌚)
+2. Provide meaningfull responses (time constraint ⌚)
+3. Check the code for consistancy (time constraint ⌚)
