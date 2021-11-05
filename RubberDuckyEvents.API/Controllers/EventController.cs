@@ -58,30 +58,14 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
+        //Works
         //Get request for event based on ageRange
         [HttpGet("getByAge/{age}")]
-        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetEventsByAgeRange(int age)
-        {
-            try
-            {
-                var event_ = await _database.GetEventsByAgeRange(age);
-                if (event_ != null)
-                {
-                    return Ok(ViewEvent.FromModel(event_));
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Got an error for {nameof(GetEventsByAgeRange)}");
-                return BadRequest(ex.Message);
-            }
-        }
+        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Get(int age) =>
+            Ok((await _database.GetEventsByAgeRange(age))
+                .Select(ViewEvent.FromModel).ToList());
 
         //Works
         //Delete request for event based on id

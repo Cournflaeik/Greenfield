@@ -101,9 +101,10 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Events.FindAsync(parsedId);
         }
 
-        public async Task<Event> GetEventsByAgeRange(int age)
+        public async Task<ReadOnlyCollection<Event>> GetEventsByAgeRange(int age)
         {
-            return await _context.Events.FindAsync(age);
+            var events = await _context.Events.Where(x => x.MinAge <= age && age <= x.MaxAge).ToArrayAsync();
+            return Array.AsReadOnly(events);
         }
         public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj
         {
