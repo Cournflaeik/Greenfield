@@ -1,5 +1,5 @@
 # RubberDuckyEvents sick API
-A nice API where you can
+A nice API where you can do the following things.
 
 ## Users
 - add users
@@ -19,11 +19,11 @@ A nice API where you can
 - get events by id
 
 # How to use
-1. Clone the code
-'git clone https://github.com/Cournflaeik/Greenfield.git'
-2. Open the folder "RubberDuckyEvents.API"
-'cd RubberDuckyEvents.API'
-3. Update your sqlite database
-'dotnet ef database update'
-4. Run the damn thing
-'dotnet watch run'
+1. Clone the code</br>
+`git clone https://github.com/Cournflaeik/Greenfield.git`
+2. Open the folder "RubberDuckyEvents.API" </br>
+`cd RubberDuckyEvents.API`
+3. Update your sqlite database</br>
+`dotnet ef database update`
+4. Run the damn thing</br>
+`dotnet watch run`
