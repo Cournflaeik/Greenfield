@@ -68,7 +68,6 @@ namespace RubberDuckyEvents.API.Infra
             return user;
         }
 
-        // REMARK be carefull with adding methods that don't actually do what the method name implies they do
         public async Task<User> AddUserAttendance(User user, string eventName)
         {
             if (user.Id == 0)
@@ -84,9 +83,9 @@ namespace RubberDuckyEvents.API.Infra
         }
 
         //Event 
-        public async Task DeleteEvent(string name)
+        public async Task DeleteEvent(int id)
         {
-            var event_ = await _context.Events.FindAsync(name);
+            var event_ = await _context.Events.FindAsync(id);
             _context.Events.Remove(event_);
             await _context.SaveChangesAsync();
         }
@@ -102,15 +101,11 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Events.FindAsync(parsedId);
         }
 
-        public async Task<Event> GetEventByName(string name)
-        {
-            return await _context.Events.FindAsync(name);
-        }
-
         public async Task<Event> GetEventsByAgeRange(DateTime minAge, DateTime maxAge)
         {
             return await _context.Events.FindAsync(minAge, maxAge);
         }
+
         public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj
         {
             if (event_.Id == 0)

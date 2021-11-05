@@ -25,23 +25,15 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
-        //Get request for user based on start of name
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<ViewUser>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Get(string nameStartsWith) =>
-            Ok((await _database.GetAllUsers(nameStartsWith))
-                .Select(ViewUser.FromModel).ToList());
-
         //Get request for user based on ID
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
-        public async Task<IActionResult> GetById(string id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var user = await _database.GetUserById(int.Parse(id));
+                var user = await _database.GetUserById(id);
                 if (user != null)
                 {
                     return Ok(ViewUser.FromModel(user)); //is niet gelijk ViewUser is hetgeen dat je wilt dat er gezien kan worden (bv. zonder passwoord, enkel mail en naam)

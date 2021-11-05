@@ -9,8 +9,8 @@ namespace RubberDuckyEvents.API.Controllers
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime MinAge { get; set; }
-        public DateTime MaxAge { get; set; }
+        public int MinAge { get; set; }
+        public int MaxAge { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string StreetName { get; set; }
@@ -26,8 +26,8 @@ namespace RubberDuckyEvents.API.Controllers
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime MinAge { get; set; }
-        public DateTime MaxAge { get; set; }
+        public int MinAge { get; set; }
+        public int MaxAge { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string StreetName { get; set; }

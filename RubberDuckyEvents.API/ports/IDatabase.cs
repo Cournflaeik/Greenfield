@@ -17,9 +17,8 @@ namespace RubberDuckyEvents.API.Ports
 
         Task<ReadOnlyCollection<Event>> GetAllEvents(string nameStartsWith);
         Task<Event> GetEventById(int id);
-        Task<Event> GetEventByName(string name);
         Task<Event> GetEventsByAgeRange(DateTime minAge, DateTime maxAge);
         Task<Event> PersistEvent(Event event_);
-        Task DeleteEvent(string name);
+        Task DeleteEvent(int id);
     }
 }

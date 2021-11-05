@@ -24,26 +24,15 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
-        //Get request for event based on start of name
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
-        // REMARK a get without content? Empty collection does not mean "empty response"
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Get(string nameStartsWith) =>
-            Ok((await _database.GetAllEvents(nameStartsWith))
-                .Select(ViewEvent.FromModel).ToList());
-
-        //Get request for event based on name
-        [HttpGet("{name}")]
-        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByName(string name)
+        //Get request for event based on id
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
+        [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                // REMARK nothing in your domain model/database definition defines that name is unique. I.E. you can get more than one result
-                // with the same name. I _think_ this might be better a 'get by id'.
-                var event_ = await _database.GetEventByName(name);
+                var event_ = await _database.GetEventById(id);
                 if (event_ != null)
                 {
                     return Ok(ViewEvent.FromModel(event_));
@@ -55,7 +44,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(GetByName)}");
+                _logger.LogError(ex, $"Got an error for {nameof(GetById)}");
                 return BadRequest(ex.Message);
             }
         }
@@ -80,24 +69,23 @@ namespace RubberDuckyEvents.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(GetByName)}");
+                _logger.LogError(ex, $"Got an error for {nameof(GetById)}");
                 return BadRequest(ex.Message);
             }
         }
 
-        //Delete request for user based on name
-        [HttpDelete("{name}")]
+        //Delete request for event based on id
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteByName(string name)
+        public async Task<IActionResult> DeleteById(int id)
         {
             try
             {
-                // REMARK again, name is not unique in your model.
-                var event_ = await _database.GetEventByName(name);
+                var event_ = await _database.GetEventById(id);
                 if (event_ != null)
                 {
-                    await _database.DeleteEvent(name);
+                    await _database.DeleteEvent(id);
                     return NoContent();
                 }
                 else
@@ -107,7 +95,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(DeleteByName)}");
+                _logger.LogError(ex, $"Got an error for {nameof(DeleteById)}");
                 return BadRequest(ex.Message);
             }
         }
@@ -122,7 +110,7 @@ namespace RubberDuckyEvents.API.Controllers
             {
                 var createdEvent = event_.ToEvent();
                 var persistedEvent = await _database.PersistEvent(createdEvent);
-                return CreatedAtAction(nameof(GetByName), new { id = createdEvent.Id.ToString() }, ViewEvent.FromModel(persistedEvent));
+                return CreatedAtAction(nameof(GetById), new { id = createdEvent.Id.ToString() }, ViewEvent.FromModel(persistedEvent));
             }
             catch (Exception ex)
             {
