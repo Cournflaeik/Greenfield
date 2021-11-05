@@ -29,36 +29,11 @@ namespace RubberDuckyEvents.API.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetUserById(int id)
         {
             try
             {
                 var user = await _database.GetUserById(id);
-                if (user != null)
-                {
-                    return Ok(ViewUser.FromModel(user)); //is niet gelijk ViewUser is hetgeen dat je wilt dat er gezien kan worden (bv. zonder passwoord, enkel mail en naam)
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Got an error for {nameof(GetById)}");
-                return BadRequest(ex.Message);
-            }
-        }
-
-        //Get request for user based on name
-        [HttpGet("{name}")]
-        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByName(string name)
-        {
-            try
-            {
-                var user = await _database.GetUserByName(name);
                 if (user != null)
                 {
                     return Ok(ViewUser.FromModel(user));
@@ -70,7 +45,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Got an error for {nameof(GetByName)}");
+                _logger.LogError(ex, $"Got an error for {nameof(GetUserById)}");
                 return BadRequest(ex.Message);
             }
         }
@@ -111,7 +86,7 @@ namespace RubberDuckyEvents.API.Controllers
             {
                 var createdUser = user.ToUser();
                 var persistedUser= await _database.PersistUser(createdUser);
-                return CreatedAtAction(nameof(GetById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
             }
             catch (Exception ex)
             {
@@ -130,7 +105,7 @@ namespace RubberDuckyEvents.API.Controllers
             {
                 var createdUser = user.ToUser();
                 var persistedUser= await _database.PersistUser(createdUser);
-                return CreatedAtAction(nameof(GetById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
             }
             catch (Exception ex)
             {
@@ -149,7 +124,7 @@ namespace RubberDuckyEvents.API.Controllers
             {
                 var createdUser = user.ToUser();
                 var persistedUser= await _database.PersistUser(createdUser);
-                return CreatedAtAction(nameof(GetById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
+                return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id.ToString() }, ViewUser.FromModel(persistedUser));
             }
             catch (Exception ex)
             {

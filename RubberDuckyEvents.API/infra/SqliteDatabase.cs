@@ -36,10 +36,6 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Users.FindAsync(parsedId);
         }
 
-        public async Task<User> GetUserByName(string name)
-        {
-            return await _context.Users.FindAsync(name);
-        }
         public async Task<User> PersistUser(User user)
         {
             if (user.Id == 0)
