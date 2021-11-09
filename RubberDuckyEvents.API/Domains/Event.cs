@@ -16,7 +16,7 @@ namespace RubberDuckyEvents.API.Domain
         public DateTime EndDate { get; set; }
 
         // REMARK this way of structuring your code doesn't really promote re-use. I'd use an Address class and a property called "EventAddress"
-        //Nice to have
+        // This is a nice to have if everything is done
         public string StreetName { get; set; }
         public int StreetNumber { get; set; }
         public string City { get; set; }

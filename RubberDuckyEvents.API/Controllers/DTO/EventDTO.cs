@@ -17,8 +17,9 @@ namespace RubberDuckyEvents.API.Controllers
         public int StreetNumber { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public Event ToEvent() => new Event { Id = this.Id, Name = this.Name, Description = this.Description, MinAge = this.MinAge, MaxAge = this.MaxAge, StartDate = this.StartDate, EndDate = this.EndDate, StreetName = this.StreetName, StreetNumber = this.StreetNumber, City = this.City, Country = this.Country};
 
+        // Creates Event object from input
+        public Event ToEvent() => new Event { Id = this.Id, Name = this.Name, Description = this.Description, MinAge = this.MinAge, MaxAge = this.MaxAge, StartDate = this.StartDate, EndDate = this.EndDate, StreetName = this.StreetName, StreetNumber = this.StreetNumber, City = this.City, Country = this.Country};
     }
 
     public class ViewEvent

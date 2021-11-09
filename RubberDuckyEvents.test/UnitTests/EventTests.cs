@@ -12,7 +12,7 @@ namespace RubberDuckyEvents.Test.UnitTests
 {
     public class EventControllerUnitTest
     {
-        private Mock<ILogger<EventController>> _mockedLogger = new Mock<ILogger<EventController>>();
+        private Mock<ILogger<EventController>> _mockedLogger = new Mock<ILogger<EventController>>(); //Mock is a library that allows us to fake databases and loggers
         private Mock<IDatabase> _mockedDatabase = new Mock<IDatabase>();
 
         public EventControllerUnitTest()

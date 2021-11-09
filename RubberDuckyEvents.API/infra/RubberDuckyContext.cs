@@ -12,7 +12,7 @@ namespace RubberDuckyEvents.API.Infra
 
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<User> Users { get; set; } // Add users to the context
+        public DbSet<Event> Events { get; set; } // Add events to the context
     }
 }

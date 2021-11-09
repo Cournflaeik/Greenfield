@@ -25,7 +25,7 @@ namespace RubberDuckyEvents.API
 
             services.AddDbContext<RubberDuckyContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IDatabase, SqliteDatabase>();
+            services.AddTransient<IDatabase, SqliteDatabase>(); // This line was added to make the database work with our code
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

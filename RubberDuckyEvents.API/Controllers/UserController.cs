@@ -25,7 +25,6 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
-        //works
         [HttpGet("getAllUsers")]
         [ProducesResponseType(typeof(IEnumerable<ViewUser>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -33,7 +32,6 @@ namespace RubberDuckyEvents.API.Controllers
             Ok((await _database.GetAllUsers(titleStartsWith))
                 .Select(ViewUser.FromModel).ToList());
 
-        //works
         //Get request for user based on ID
         [HttpGet("getUserById/{id}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
@@ -59,7 +57,6 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //works
         //Delete request for user based on ID
         [HttpDelete("removeUserById/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -86,7 +83,6 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //works
         //Put request for user changes
         [HttpPut("addEditUser/")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
@@ -106,7 +102,6 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //Works
         //Put request for user attendance removal
         [HttpPut("removeAttendance/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -1,0 +1,95 @@
+entities_actions.txt
+    Declaration of all endpoints and attributes
+
+notes.txt
+    Wait...
+
+------------------------------------------------RubberDuckyEvents.API------------------------------------------------
+
+Startup.cs
+    Geen idee(overgenomen van Raf), enkel lijn 28 toegevoegd om de applicatie te laten werken met de database
+
+RubberDuckyEvents.csproj
+    dotnet run gaat zoeken naar het project file, zijnde deze file
+
+Program.cs
+    Geen idee(overgenomen van Raf)
+
+imd-rubberducky-dev.sqlite
+    Database file, hetzelfde als database exporteren bij phpmyadmin
+
+appsettings.json
+    Geen idee(overgenomen van Raf), settings van de app? 
+
+appsettings.Development.json
+    Geen idee(overgenomen van Raf), settings van de app voor gebruik tijdens development? 
+
+------------------------------------------------
+Properties {
+    launchSettings.json
+        Geen idee(overgenomen van Raf), settings voor het launchen van het project? 
+}
+
+------------------------------------------------
+ports { 
+    IDatabase.cs
+        Interface Database
+}
+
+------------------------------------------------
+Migrations {
+    Alle files in deze map zijn blueprints voor hoe de tables in de database eruit moeten zien
+    dotnet ef migrations add migrationName  --> migrations aanmaken op basis van models
+}
+
+------------------------------------------------
+infra {
+    RubberDuckyContext.cs
+        De context van de hele applicatie omvat de users en de events
+
+    SqliteDatabase.cs
+        De functies die uiteindelijk op de database worden uitgevoerd staan hier in en wat ze moeten doen als we ze oproepen
+}
+
+------------------------------------------------
+Domains {
+    All files hier binnen zijn klasse definities
+}
+
+------------------------------------------------
+Controllers {
+    DTO {
+        Data Transfer Object --> Specifieke data terugsturen als antwoord op http requests
+    }
+
+    Controllers handle the functions that the user can activate through the swagger ui
+}
+
+------------------------------------------------
+.vscode {
+    code to make this run in vsCode
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------RubberDuckyEvents.test--------------------------------------------------------------------------
+
+API-new.sln
+    Niet zelf geschreven, gegenerate met dotnet new sln (of iets soortgelijk)
+    Zoekt in de map RubberDuckyEvents.test naar de .csproj die hij kan uitvoeren
+
+RubberDuckyEvents.test {
+    obj {
+        Gegenerate samen met de sln files 
+    }
+
+    UnitTests {
+        Bevat de tests die uitgevoerd kunnen worden of de code van de API werkt en reageert zoals verwacht
+    }
+
+    RubberDuckyEvents.test.csproj 
+        dotnet test gaat deze file starten
+}

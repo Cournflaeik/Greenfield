@@ -1,3 +1,4 @@
+ <!-- This file is needed to run dotnet run  -->
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>

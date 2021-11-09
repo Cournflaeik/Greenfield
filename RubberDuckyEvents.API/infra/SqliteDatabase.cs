@@ -8,7 +8,7 @@ using RubberDuckyEvents.API.Ports;
 
 namespace RubberDuckyEvents.API.Infra
 {
-    public class SqliteDatabase : IDatabase
+    public class SqliteDatabase : IDatabase // SqliteDatabase inherits the interface IDatabase
     {
         private RubberDuckyContext _context;
 
@@ -19,14 +19,13 @@ namespace RubberDuckyEvents.API.Infra
 
         public async Task DeleteUser(int parsedId)
         {
-            var user = await _context.Users.FindAsync(parsedId);
+            var user = await _context.Users.FindAsync(parsedId); // await and .FindAsynch are needed for asychrone coding basically waits their turn if the servers are getting a lot of requests
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ReadOnlyCollection<User>> GetAllUsers(string nameStartsWith)
+        public async Task<ReadOnlyCollection<User>> GetAllUsers(string nameStartsWith) // Task<ReadOnlyCollection<User>> loosley translates to Array<User>
         {
-
             var users = await _context.Users.Where(x => EF.Functions.Like(x.Name, $"{nameStartsWith}%")).ToArrayAsync();
             return Array.AsReadOnly(users);
         }
@@ -40,7 +39,8 @@ namespace RubberDuckyEvents.API.Infra
         {
             return await _context.Users.FindAsync(name);
         }
-        public async Task<User> PersistUser(User user)
+
+        public async Task<User> PersistUser(User user) // User updating
         {
             if (user.Id == 0)
             {
@@ -77,21 +77,25 @@ namespace RubberDuckyEvents.API.Infra
             _context.Events.Remove(event_);
             await _context.SaveChangesAsync();
         }
+
         public async Task<ReadOnlyCollection<Event>> GetAllEvents(string nameStartsWith)
         {
             var events = await _context.Events.Where(x => EF.Functions.Like(x.Name, $"{nameStartsWith}%")).ToArrayAsync();
             return Array.AsReadOnly(events);
         }
+
         public async Task<Event> GetEventById(int parsedId)
         {
             return await _context.Events.FindAsync(parsedId);
         }
+        
         public async Task<Event[]> GetEventsByAgeRange(int age)
         {
             var events = await _context.Events.Where(x => x.MinAge <= age && age <= x.MaxAge).ToArrayAsync();
             return events;
         }
-        public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj
+
+        public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj || Updating events
         {
             if (event_.Id == 0)
             {

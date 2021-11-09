@@ -24,15 +24,14 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
-        //works
-        [HttpGet("getAllEvents")]
-        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Get(string titleStartsWith) =>
+        
+        [HttpGet("getAllEvents")] // Define what http request it is and what path it is on
+        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)] // Define a response type 200
+        [ProducesResponseType(StatusCodes.Status204NoContent)] // Define a response type 204
+        public async Task<IActionResult> Get(string titleStartsWith) => // The thing that is supposed to happen when this request is triggered //This is a lambda function
             Ok((await _database.GetAllEvents(titleStartsWith))
                 .Select(ViewEvent.FromModel).ToList());
 
-        //works
         //Get request for event based on id
         [HttpGet("getEventById/{id}")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
@@ -41,14 +40,14 @@ namespace RubberDuckyEvents.API.Controllers
         {
             try
             {
-                var event_ = await _database.GetEventById(id);
-                if (event_ != null)
+                var event_ = await _database.GetEventById(id); // Get event from db
+                if (event_ != null) // Check if event is not null
                 {
-                    return Ok(ViewEvent.FromModel(event_));
+                    return Ok(ViewEvent.FromModel(event_)); // If event is not null return event in 200 response
                 }
                 else
                 {
-                    return NotFound();
+                    return NotFound(); // If event is not null return 404
                 }
             }
             catch (Exception ex)
@@ -58,7 +57,6 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //Works
         [HttpGet("getEvenstByAgeRange/{age}")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
@@ -83,7 +81,6 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //Works
         //Delete request for event based on id
         [HttpDelete("removeEventById/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -110,7 +107,6 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //works
         //Put request for event
         [HttpPut("addEditEvent")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status201Created)]
