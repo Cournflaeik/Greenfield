@@ -43,11 +43,11 @@ namespace RubberDuckyEvents.API.Controllers
                 var event_ = await _database.GetEventById(id); // Get event from db
                 if (event_ != null) // Check if event is not null
                 {
-                    return Ok(ViewEvent.FromModel(event_)); // If event is not null return event in 200 response
+                    return Ok(ViewEvent.FromModel(event_)); // If event is found return event in 200 response
                 }
                 else
                 {
-                    return NotFound(); // If event is not null return 404
+                    return NotFound(); // If event is null return 404
                 }
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        [HttpGet("getEvenstByAgeRange/{age}")]
+        [HttpGet("getEventsByAgeRange/{age}")]
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
         public async Task<IActionResult> GetEventsByAgeRange(int age)
