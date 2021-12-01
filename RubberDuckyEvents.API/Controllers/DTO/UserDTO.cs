@@ -12,7 +12,7 @@ namespace RubberDuckyEvents.API.Controllers
         public string Mail { get; set; }
         public int EventId { get; set; }
 
-        // Creates Event object from input
+        // Creates a user object from input
         public User ToUser() => new User { Name = this.Name, DateOfBirth = this.DateOfBirth, Mail = this.Mail, EventId = this.EventId,  Id = this.Id };
     }
 

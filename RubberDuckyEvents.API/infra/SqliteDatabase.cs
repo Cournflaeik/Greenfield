@@ -8,7 +8,8 @@ using RubberDuckyEvents.API.Ports;
 
 namespace RubberDuckyEvents.API.Infra
 {
-    public class SqliteDatabase : IDatabase // SqliteDatabase inherits the interface IDatabase
+    // SqliteDatabase inherits the interface IDatabase
+    public class SqliteDatabase : IDatabase
     {
         private RubberDuckyContext _context;
 
@@ -17,14 +18,14 @@ namespace RubberDuckyEvents.API.Infra
             _context = context;
         }
 
-        public async Task DeleteUser(int parsedId)
+        public async Task DeleteUser(User user)
         {
-            var user = await _context.Users.FindAsync(parsedId); // await and .FindAsynch are needed for asychrone coding basically waits their turn if the servers are getting a lot of requests
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ReadOnlyCollection<User>> GetAllUsers(string nameStartsWith) // Task<ReadOnlyCollection<User>> loosley translates to Array<User>
+        // Task<ReadOnlyCollection<User>> loosley translates to Array<User>
+        public async Task<ReadOnlyCollection<User>> GetAllUsers(string nameStartsWith)
         {
             var users = await _context.Users.Where(x => EF.Functions.Like(x.Name, $"{nameStartsWith}%")).ToArrayAsync();
             return Array.AsReadOnly(users);
@@ -40,7 +41,8 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Users.FindAsync(name);
         }
 
-        public async Task<User> PersistUser(User user) // User updating
+        // User updating
+        public async Task<User> PersistUser(User user)
         {
             if (user.Id == 0)
             {
@@ -56,10 +58,14 @@ namespace RubberDuckyEvents.API.Infra
 
         public async Task DeleteUserAttendance(int id)
         {
-            var user = await _context.Users.FindAsync(id);              //Get user from db
-            user.EventId = 0;                                           //Change EventId
-            _context.Entry(user).Property("EventId").IsModified = true; //Tell dotnet ef EventId has changed
-            await _context.SaveChangesAsync();                          //Save the changes
+            // Get user from db
+            var user = await _context.Users.FindAsync(id);
+            // Change EventId          
+            user.EventId = 0;
+            // Tell dotnet ef EventId has changed
+            _context.Entry(user).Property("EventId").IsModified = true;
+            // Save the changes
+            await _context.SaveChangesAsync();
         }
 
         public async Task AddUserAttendance(int id, int eventId)
@@ -95,7 +101,8 @@ namespace RubberDuckyEvents.API.Infra
             return events;
         }
 
-        public async Task<Event> PersistEvent(Event event_) //event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj || Updating events
+        // Event seems to be a keyword in the file OmniSharpMiscellaneousFiles.csproj || Updating events
+        public async Task<Event> PersistEvent(Event event_)
         {
             if (event_.Id == 0)
             {

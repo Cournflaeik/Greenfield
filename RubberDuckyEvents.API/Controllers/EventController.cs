@@ -24,30 +24,38 @@ namespace RubberDuckyEvents.API.Controllers
             _logger = logger;
         }
 
-        
-        [HttpGet("getAllEvents")] // Define what http request it is and what path it is on
-        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)] // Define a response type 200
-        [ProducesResponseType(StatusCodes.Status204NoContent)] // Define a response type 204
-        public async Task<IActionResult> Get(string titleStartsWith) => // The thing that is supposed to happen when this request is triggered //This is a lambda function
+        // Define what http request it is and what path it is on
+        [HttpGet("getAllEvents")]
+        // Define a response type 200 = The request went great
+        [ProducesResponseType(typeof(IEnumerable<ViewEvent>), StatusCodes.Status200OK)]
+        // Define a response type 204 = The request went great but there was no content inside
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        // => : arrow function = function ...{...} but here you can write it on 1 line
+        // task means always async programming, you need this to not obsctruct the other threads
+        public async Task<IActionResult> Get(string titleStartsWith) =>
             Ok((await _database.GetAllEvents(titleStartsWith))
                 .Select(ViewEvent.FromModel).ToList());
 
-        //Get request for event based on id
         [HttpGet("getEventById/{id}")]
-        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
-        [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
+        // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist) https.cat
+        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetEventById(int id)
         {
             try
             {
-                var event_ = await _database.GetEventById(id); // Get event from db
-                if (event_ != null) // Check if event is not null
+                // Get event from database
+                var event_ = await _database.GetEventById(id);
+                // Check if event is not null
+                if (event_ != null)
                 {
-                    return Ok(ViewEvent.FromModel(event_)); // If event is found return event in 200 response
+                    // If event is found return event in 200 response
+                    return Ok(ViewEvent.FromModel(event_)); 
                 }
                 else
                 {
-                    return NotFound(); // If event is null return 404
+                    // If event is null return 404
+                    return NotFound(); 
                 }
             }
             catch (Exception ex)
@@ -58,8 +66,10 @@ namespace RubberDuckyEvents.API.Controllers
         }
 
         [HttpGet("getEventsByAgeRange/{age}")]
-        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
-        [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
+        // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
+        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
+        //ProducesResponseType geeft het type van het antwoord
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetEventsByAgeRange(int age)
         {
             try

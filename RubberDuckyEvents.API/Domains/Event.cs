@@ -7,7 +7,8 @@ namespace RubberDuckyEvents.API.Domain
     public class Event
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; } // or Guid? (more possibilities) but int is enough
+        // Or Guid? (more possibilities) but int is enough
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int MinAge { get; set; }

@@ -34,8 +34,10 @@ namespace RubberDuckyEvents.API.Controllers
 
         //Get request for user based on ID
         [HttpGet("getUserById/{id}")]
-        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)] // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
-        [ProducesResponseType(StatusCodes.Status404NotFound)] //ProducesResponseType geeft het type van het antwoord
+        // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
+        [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)]
+        //ProducesResponseType geeft het type van het antwoord
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetUserById(int id)
         {
             try
@@ -68,8 +70,8 @@ namespace RubberDuckyEvents.API.Controllers
                 var user = await _database.GetUserById(id);
                 if (user != null)
                 {
-                    await _database.DeleteUser(id);
-                    return NoContent();
+                    await _database.DeleteUser(user);
+                    return NoContent(); 
                 }
                 else
                 {

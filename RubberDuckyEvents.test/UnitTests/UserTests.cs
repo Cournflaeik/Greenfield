@@ -24,8 +24,7 @@ namespace RubberDuckyEvents.Test.UnitTests
         [Fact]
         public async Task TestGetUserById_Success()
         {
-            var rnd = new Random();
-            var testId = rnd.Next(101);
+            var testId = 1;
 
             //Create mock up user
             var testUser = new User { Id = testId, Name = "Bailey", 

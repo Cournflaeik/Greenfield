@@ -136,23 +136,6 @@ namespace RubberDuckyEvents.Test.UnitTests
 
             //Check results
             Assert.Equal(200, actualResult.StatusCode);
-            //result returns an array of results not singular result, how to check if multiple results are correct *SEE BELOW*
-            //Does pass the test with 200 not with notFound or badRequest 
-
-            /*
-            var viewModel = actualResult.Value as ViewEvent;
-            Assert.Equal(testEvent.Id, viewModel.Id);
-            Assert.Equal(testEvent.Name, viewModel.Name);
-            Assert.Equal(testEvent.Description, viewModel.Description);
-            Assert.Equal(testEvent.MinAge, viewModel.MinAge);
-            Assert.Equal(testEvent.MaxAge, viewModel.MaxAge);
-            Assert.Equal(testEvent.StartDate, viewModel.StartDate);
-            Assert.Equal(testEvent.EndDate, viewModel.EndDate);
-            Assert.Equal(testEvent.StreetName, viewModel.StreetName);
-            Assert.Equal(testEvent.StreetNumber, viewModel.StreetNumber);
-            Assert.Equal(testEvent.City, viewModel.City);
-            Assert.Equal(testEvent.Country, viewModel.Country);
-            */
 
             _mockedLogger.VerifyAll();
             _mockedDatabase.VerifyAll();
