@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RubberDuckyEvents.API.Infra;
 using RubberDuckyEvents.API.Ports;
-
+////qsdkjfqmkjsdfkmqjsdfkmjqsdkfjqsfdjkmmqlksjdf duck duck rubby kwak
 namespace RubberDuckyEvents.API
 {
     public class Startup
