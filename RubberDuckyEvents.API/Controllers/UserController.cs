@@ -134,14 +134,15 @@ namespace RubberDuckyEvents.API.Controllers
         [HttpPut("event/{eventId}/addAttendance/{userId}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddUserAttendance(int userId, int eventId)
+        public async Task<IActionResult> AddUserAttendance(int userEventId, int userId, int eventId)
         {
             try
             {
                 var user = await _database.GetUserById(userId);
-                if (user != null)
+                var event_ = await _database.GetEventById(eventId);
+                if (user != null && event_ != null) 
                 {
-                    await _database.AddUserAttendance(userId, eventId);
+                    await _database.AddUserAttendance(userEventId, userId, eventId);
                     return NoContent();
                 }
                 else

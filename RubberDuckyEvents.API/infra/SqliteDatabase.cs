@@ -68,15 +68,18 @@ namespace RubberDuckyEvents.API.Infra
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddUserAttendance(int id, int eventId)
+        public async Task AddUserAttendance(int userEventId, int userId, int eventId)
         {
-            var user = await _context.Users.FindAsync(id);
-            user.EventId = eventId;
-            _context.Entry(user).Property("EventId").IsModified = true;
+            var userEvent = new UserEvent();
+            userEvent = await _context.UserEvent.AddAsync(userEvent);
+
+            userEvent.UserId = userId;
+            userEvent.EventId = eventId;
+
             await _context.SaveChangesAsync();
         }
 
-        //Event 
+        // Event 
         public async Task DeleteEvent(int id)
         {
             var event_ = await _context.Events.FindAsync(id);

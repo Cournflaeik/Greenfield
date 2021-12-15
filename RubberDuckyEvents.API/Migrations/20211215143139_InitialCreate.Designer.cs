@@ -9,7 +9,7 @@ using RubberDuckyEvents.API.Infra;
 namespace RubberDuckyEvents.Migrations
 {
     [DbContext(typeof(RubberDuckyContext))]
-    [Migration("20211105113441_InitialCreate")]
+    [Migration("20211215143139_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,6 +80,23 @@ namespace RubberDuckyEvents.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RubberDuckyEvents.API.Domain.UserEvent", b =>
+                {
+                    b.Property<int>("UserEventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserEventId");
+
+                    b.ToTable("UserEvent");
                 });
 #pragma warning restore 612, 618
         }

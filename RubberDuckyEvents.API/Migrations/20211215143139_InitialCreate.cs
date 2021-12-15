@@ -30,6 +30,20 @@ namespace RubberDuckyEvents.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserEvent",
+                columns: table => new
+                {
+                    UserEventId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserEvent", x => x.UserEventId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -50,6 +64,9 @@ namespace RubberDuckyEvents.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "UserEvent");
 
             migrationBuilder.DropTable(
                 name: "Users");
