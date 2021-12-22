@@ -105,17 +105,17 @@ namespace RubberDuckyEvents.API.Controllers
         }
 
         //Put request for user attendance removal
-        [HttpPut("removeAttendance/{id}")]
+        [HttpDelete("event/{eventId}/attendance/{userId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteUserAttendance(int id)
+        public async Task<IActionResult> DeleteUserAttendance(int userId, int eventId)
         {
             try
             {
-                var user = await _database.GetUserById(id);
-                if (user != null)
+
+                if (await _database.UserEventExists(userId, eventId))
                 {
-                    await _database.DeleteUserAttendance(id);
+                    await _database.DeleteUserAttendance(userId, eventId);
                     return NoContent();
                 }
                 else
@@ -131,10 +131,10 @@ namespace RubberDuckyEvents.API.Controllers
         }
 
         //Put request for adding user attendance
-        [HttpPut("event/{eventId}/addAttendance/{userId}")]
+        [HttpPut("event/{eventId}/attendance/{userId}")]
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddUserAttendance(int userEventId, int userId, int eventId)
+        public async Task<IActionResult> AddUserAttendance(int userId, int eventId)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace RubberDuckyEvents.API.Controllers
                 var event_ = await _database.GetEventById(eventId);
                 if (user != null && event_ != null) 
                 {
-                    await _database.AddUserAttendance(userEventId, userId, eventId);
+                    await _database.AddUserAttendance(userId, eventId);
                     return NoContent();
                 }
                 else
