@@ -59,7 +59,7 @@ Domains {
 ------------------------------------------------
 Controllers {
     DTO {
-        Data Transfer Object --> Specifieke data terugsturen als antwoord op http requests
+        Data Transfer Object --> Specifieke data terugsturen als antwoord op http requests, for security reasons (niet te veel data leaken)
     }
 
     Controllers handle the functions that the user can activate through the swagger ui
