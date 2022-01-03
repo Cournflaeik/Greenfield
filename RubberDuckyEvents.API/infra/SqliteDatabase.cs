@@ -58,8 +58,11 @@ namespace RubberDuckyEvents.API.Infra
 
         public async Task DeleteUserAttendance(int userId, int eventId)
         {
-            var userEvents = await _context.UserEvent.Where(x => x.UserId == userId && x.EventId == eventId);
-            _context.Events.Remove(event_); //TODO: Remove all events that you get back it's a list
+            var userEvents = await _context.UserEvent.Where(x => x.UserId == userId && x.EventId == eventId).ToListAsync();
+            for (int i = 0; i < userEvents.Count; i++)
+            {
+            _context.UserEvent.Remove(userEvents[i]);
+            }
             await _context.SaveChangesAsync();
         }
 
@@ -84,7 +87,7 @@ namespace RubberDuckyEvents.API.Infra
 
         public async Task<Boolean> UserEventExists(int userId, int eventId)
         {
-            var userEvents = await _context.UserEvent.Where(x => x.UserId == userId && x.EventId == eventId);
+            var userEvents = await _context.UserEvent.Where(x => x.UserId == userId && x.EventId == eventId).ToListAsync();
 
             if(userEvents.Count() >= 1){
                 return true;

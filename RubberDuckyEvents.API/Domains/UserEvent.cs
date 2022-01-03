@@ -11,6 +11,6 @@ namespace RubberDuckyEvents.API.Domain
         // We focus only on the essence of this course
         public int UserEventId { get; set; }
         public int UserId { get; set; }
-        public int EventId { get; set; } //TODO: Only one event per person
+        public int EventId { get; set; }
     }
 }
