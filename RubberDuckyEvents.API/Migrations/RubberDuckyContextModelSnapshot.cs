@@ -79,6 +79,23 @@ namespace RubberDuckyEvents.Migrations
 
                     b.ToTable("Users");
                 });
+
+            modelBuilder.Entity("RubberDuckyEvents.API.Domain.UserEvent", b =>
+                {
+                    b.Property<int>("UserEventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserEventId");
+
+                    b.ToTable("UserEvent");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -65,6 +65,32 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
+        [HttpGet("getEventParticipantCount/{id}")]
+        [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetEventParticipantCount(int id)
+        {
+            try
+            {
+                var event_ = await _database.GetEventById(id);
+                if (event_ != null)
+                {
+                    var eventCount = await _database.GetEventParticipantCount(id);
+                    return Ok(eventCount); 
+                }
+                else
+                {
+                    return NotFound(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Got an error for {nameof(GetEventById)}");
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpGet("getEventsByAgeRange/{age}")]
         // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]

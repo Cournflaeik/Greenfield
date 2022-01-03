@@ -56,32 +56,44 @@ namespace RubberDuckyEvents.API.Infra
             return user;
         }
 
-        public async Task DeleteUserAttendance(int id)
+        public async Task DeleteUserAttendance(int userId, int eventId)
         {
-            // Get user from db
-            var user = await _context.Users.FindAsync(id);
-            // Change EventId          
-            user.EventId = 0;
-            // Tell dotnet ef EventId has changed
-            _context.Entry(user).Property("EventId").IsModified = true;
-            // Save the changes
+            var userEvents = await _context.UserEvent.Where(x => x.UserId == userId && x.EventId == eventId).ToListAsync();
+            for (int i = 0; i < userEvents.Count; i++)
+            {
+            _context.UserEvent.Remove(userEvents[i]);
+            }
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddUserAttendance(int id, int eventId)
+        public async Task AddUserAttendance(int userId, int eventId)
         {
-            var user = await _context.Users.FindAsync(id);
-            user.EventId = eventId;
-            _context.Entry(user).Property("EventId").IsModified = true;
+            var userEvent = new UserEvent();
+            
+            userEvent.UserId = userId;
+            userEvent.EventId = eventId;
+
+            await _context.UserEvent.AddAsync(userEvent);
             await _context.SaveChangesAsync();
         }
 
-        //Event 
+        // Event 
         public async Task DeleteEvent(int id)
         {
             var event_ = await _context.Events.FindAsync(id);
             _context.Events.Remove(event_);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Boolean> UserEventExists(int userId, int eventId)
+        {
+            var userEvents = await _context.UserEvent.Where(x => x.UserId == userId && x.EventId == eventId).ToListAsync();
+
+            if(userEvents.Count() >= 1){
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<ReadOnlyCollection<Event>> GetAllEvents(string nameStartsWith)
@@ -90,9 +102,15 @@ namespace RubberDuckyEvents.API.Infra
             return Array.AsReadOnly(events);
         }
 
-        public async Task<Event> GetEventById(int parsedId)
+        public async Task<Event> GetEventById(int Id)
         {
-            return await _context.Events.FindAsync(parsedId);
+            return await _context.Events.FindAsync(Id);
+        }
+
+        public async Task<int> GetEventParticipantCount(int Id)
+        {
+            var events = await _context.UserEvent.Where(x => x.EventId == Id).ToArrayAsync();
+            return events.Length;
         }
         
         public async Task<Event[]> GetEventsByAgeRange(int age)

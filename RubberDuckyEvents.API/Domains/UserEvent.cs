@@ -4,13 +4,13 @@ using System.Text.Json.Serialization;
 
 namespace RubberDuckyEvents.API.Domain
 {
-    public class User
+    public class UserEvent
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string Mail { get; set; }
+        // No composite key because it can only be used in a fluent API
+        // We focus only on the essence of this course
+        public int UserEventId { get; set; }
+        public int UserId { get; set; }
         public int EventId { get; set; }
     }
 }
