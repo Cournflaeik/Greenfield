@@ -17,6 +17,7 @@ A nice API where you can do the following things.
 - get all events
 - get events by age range
 - get events by id
+- get event participant count
 
 ## How to use the API
 1. Clone the code</br>
@@ -38,4 +39,6 @@ A nice API where you can do the following things.
 ## TODO:
 1. Provide extra tests (time constraint ⌚)
 2. Provide meaningfull responses (time constraint ⌚)
-3. Check the code for consistancy (time constraint ⌚)
+
+
+![epic ducky](https://cdn.shopify.com/s/files/1/1321/6369/products/duck-csharp_ab2e72ad-39c3-4b69-97be-e20345e05809_1024x1024.png?v=1518578301)
