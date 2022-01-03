@@ -17,6 +17,7 @@ A nice API where you can do the following things.
 - get all events
 - get events by age range
 - get events by id
+- get event participant count
 
 ## How to use the API
 1. Clone the code</br>
