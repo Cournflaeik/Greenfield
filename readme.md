@@ -39,4 +39,3 @@ A nice API where you can do the following things.
 ## TODO:
 1. Provide extra tests (time constraint ⌚)
 2. Provide meaningfull responses (time constraint ⌚)
-3. Check the code for consistancy (time constraint ⌚)
