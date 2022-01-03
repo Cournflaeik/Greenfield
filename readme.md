@@ -39,6 +39,3 @@ A nice API where you can do the following things.
 1. Provide extra tests (time constraint ⌚)
 2. Provide meaningfull responses (time constraint ⌚)
 3. Check the code for consistancy (time constraint ⌚)
-
-## Notes:
-1. Tests for getEventsByAgeRange work but no idea how to test specific id's, names, ... for multiple results
