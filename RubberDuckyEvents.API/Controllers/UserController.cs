@@ -34,9 +34,9 @@ namespace RubberDuckyEvents.API.Controllers
 
         //Get request for user based on ID
         [HttpGet("getUserById/{id}")]
-        // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
+        // 400 Is a user error, 500 Is a coder error, Every response code starting with 2 is correct https.cat
         [ProducesResponseType(typeof(ViewUser), StatusCodes.Status200OK)]
-        //ProducesResponseType geeft het type van het antwoord
+        //ProducesResponseType returns the type of responses available
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetUserById(int id)
         {
@@ -59,7 +59,7 @@ namespace RubberDuckyEvents.API.Controllers
             }
         }
 
-        //Delete request for user based on ID
+        //Delete request for user based on Id
         [HttpDelete("removeUserById/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

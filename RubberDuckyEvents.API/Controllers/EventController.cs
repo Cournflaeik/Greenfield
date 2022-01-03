@@ -37,7 +37,7 @@ namespace RubberDuckyEvents.API.Controllers
                 .Select(ViewEvent.FromModel).ToList());
 
         [HttpGet("getEventById/{id}")]
-        // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist) https.cat
+        // 400 Is a user error, 500 Is a coder error, Every response code starting with 2 is correct https.cat
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetEventById(int id)
@@ -92,9 +92,9 @@ namespace RubberDuckyEvents.API.Controllers
 
 
         [HttpGet("getEventsByAgeRange/{age}")]
-        // 400 fout ligt bij de gebruiker, 500 fout ligt bij de maker, alles wat begint met 2 is juist (bv. 204 = juist)
+        // 400 Is a user error, 500 Is a coder error, Every response code starting with 2 is correct https.cat
         [ProducesResponseType(typeof(ViewEvent), StatusCodes.Status200OK)]
-        //ProducesResponseType geeft het type van het antwoord
+        //ProducesResponseType returns the type of responses available
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetEventsByAgeRange(int age)
         {

@@ -8,7 +8,7 @@ using RubberDuckyEvents.API.Ports;
 
 namespace RubberDuckyEvents.API.Infra
 {
-    // SqliteDatabase inherits the interface IDatabase
+    //SqliteDatabase inherits the interface IDatabase
     public class SqliteDatabase : IDatabase
     {
         private RubberDuckyContext _context;
@@ -24,7 +24,7 @@ namespace RubberDuckyEvents.API.Infra
             await _context.SaveChangesAsync();
         }
 
-        // Task<ReadOnlyCollection<User>> loosley translates to Array<User>
+        //Task<ReadOnlyCollection<User>> loosley translates to Array<User>
         public async Task<ReadOnlyCollection<User>> GetAllUsers(string nameStartsWith)
         {
             var users = await _context.Users.Where(x => EF.Functions.Like(x.Name, $"{nameStartsWith}%")).ToArrayAsync();
@@ -41,7 +41,7 @@ namespace RubberDuckyEvents.API.Infra
             return await _context.Users.FindAsync(name);
         }
 
-        // User updating
+        //User updating
         public async Task<User> PersistUser(User user)
         {
             if (user.Id == 0)
@@ -77,7 +77,6 @@ namespace RubberDuckyEvents.API.Infra
             await _context.SaveChangesAsync();
         }
 
-        // Event 
         public async Task DeleteEvent(int id)
         {
             var event_ = await _context.Events.FindAsync(id);
