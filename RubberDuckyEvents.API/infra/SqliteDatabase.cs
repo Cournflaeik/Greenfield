@@ -102,9 +102,15 @@ namespace RubberDuckyEvents.API.Infra
             return Array.AsReadOnly(events);
         }
 
-        public async Task<Event> GetEventById(int parsedId)
+        public async Task<Event> GetEventById(int Id)
         {
-            return await _context.Events.FindAsync(parsedId);
+            return await _context.Events.FindAsync(Id);
+        }
+
+        public async Task<int> GetEventParticipantCount(int Id)
+        {
+            var events = await _context.UserEvent.Where(x => x.EventId == Id).ToArrayAsync();
+            return events.Length;
         }
         
         public async Task<Event[]> GetEventsByAgeRange(int age)

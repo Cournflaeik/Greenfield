@@ -16,6 +16,7 @@ namespace RubberDuckyEvents.API.Ports
 
         Task<ReadOnlyCollection<Event>> GetAllEvents(string events);
         Task<Event> GetEventById(int id);
+        Task<int> GetEventParticipantCount(int id);
         Task<Event[]> GetEventsByAgeRange(int age);
         Task<Event> PersistEvent(Event event_);
         Task DeleteEvent(int id);
